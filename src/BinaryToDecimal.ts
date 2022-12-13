@@ -1,18 +1,48 @@
+/**
+ * This class displays methods that converts a binary number into a decimal number!
+ * 
+ * ---
+ * @author RafaRamosCosta
+ */
 export class BinaryToDecimal {
   constructor(private binaryString: string) {}
 
-
+/** validateBinary
+ * This method checks if the binary string is valid!
+ * 
+ * @param binaryArray: string[] 
+ * ---
+ * @returns boolean -> true if the binary string is valid and false otherwise
+ * ---
+ * @author RafaRamosCosta
+ */
   validateBinary(binaryArray: string[]): boolean {
     const binaryChars = ["0", "1", ","];
     return binaryArray.every((char) => binaryChars.includes(char));
   }
 
-
+  /**
+   * This method checks if the binary string has comma!
+   * 
+   * ---
+   * @returns boolean -> true if the binary string has comma and false otherwise
+   * 
+   * ---
+   * @author RafaRamosCosta
+   */
   checkIfHasComma(): boolean {
     return this.binaryString.includes(",");
   }
 
-
+  /**
+   * This method returns the quantity of numbers after the comma!
+   * 
+   * ---
+   * @returns number -> quantity of decimal places
+   * 
+   * ---
+   * @author RafaRamosCosta
+   */
   countNumbersAfterComma(): number {
     const binaryHasComma = this.checkIfHasComma();
 
@@ -23,10 +53,21 @@ export class BinaryToDecimal {
       .replace(",", "")
       .split("");
 
-    // perguntar para o levi
     return strAfterComma.length;
   }
 
+  /**
+   * This method returns a array of the number parsed data from the binary string!
+   * 
+   * ---
+   * @returns parsedBinary: number[]
+   * 
+   * ---
+   * @throws Error if the binary isn't valid
+   * 
+   * ---
+   * @author RafaRamosCosta
+   */
   splitBinary(): number[] {
     try {
       this.binaryString = this.binaryString.replace(".", ",");
@@ -43,6 +84,18 @@ export class BinaryToDecimal {
     }
   }
 
+  /**
+   * This method keeps the logic behind the conversion!
+   * 
+   * ---
+   * @param binaryArray 
+   * @param numbersAfterComma 
+   * 
+   * @returns decimal -> the result of the conversion from binary to decimal
+   * 
+   * ---
+   * @author RafaRamosCosta
+   */
   toDecimal(binaryArray: number[], numbersAfterComma: number): number {
     let power = -numbersAfterComma;
 
@@ -53,6 +106,15 @@ export class BinaryToDecimal {
     }, 0);
   }
 
+  /**
+   * This method calls the methods that are responsible for converting the binary into a decimal!
+   * 
+   * ---
+   * @returns the return of the toDecimal method
+   * 
+   * ---
+   * @author RafaRamosCosta
+   */
   convert(): number {
     const binaryArray = this.splitBinary();
 
