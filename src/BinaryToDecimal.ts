@@ -68,7 +68,7 @@ export class BinaryToDecimal {
    * ---
    * @author RafaRamosCosta
    */
-  splitBinary(): number[] {
+  parseBinary(): number[] {
     try {
       this.binaryString = this.binaryString.replace(".", ",");
       const strNumbers = this.binaryString.replace(",", "").split("");
@@ -96,7 +96,7 @@ export class BinaryToDecimal {
    * ---
    * @author RafaRamosCosta
    */
-  toDecimal(binaryArray: number[], numbersAfterComma: number): number {
+  convert(binaryArray: number[], numbersAfterComma: number): number {
     let power = -numbersAfterComma;
 
     return binaryArray.reduceRight((decimal, val) => {
@@ -110,16 +110,16 @@ export class BinaryToDecimal {
    * This method calls the methods that are responsible for converting the binary into a decimal!
    * 
    * ---
-   * @returns the return of the toDecimal method
+   * @returns the return of the convert method
    * 
    * ---
    * @author RafaRamosCosta
    */
-  convert(): number {
-    const binaryArray = this.splitBinary();
+  execute(): number {
+    const binaryArray = this.parseBinary();
 
     const numbersAfterComma = this.countNumbersAfterComma();
 
-    return this.toDecimal(binaryArray, numbersAfterComma);
+    return this.convert(binaryArray, numbersAfterComma);
   }
 }
