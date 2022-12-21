@@ -74,21 +74,21 @@ describe("BinaryToDecimal", () => {
   it("should parse the string binary array to a number binary array", () => {
     const binaryToDecimal = new BinaryToDecimal("011010");
     const spy = jest
-      .spyOn(binaryToDecimal, "splitBinary")
+      .spyOn(binaryToDecimal, "parseBinary")
       .mockImplementationOnce(() => [0, 1, 1, 0, 1, 0]);
 
-    expect(binaryToDecimal.splitBinary()).toEqual([0, 1, 1, 0, 1, 0]);
+    expect(binaryToDecimal.parseBinary()).toEqual([0, 1, 1, 0, 1, 0]);
     expect(spy).toHaveBeenCalled();
   });
 
   it("should throw an error if the binary isn't valid", () => {
     const binaryToDecimalError = new BinaryToDecimal("1234");
     const spy = jest
-      .spyOn(binaryToDecimalError, "splitBinary")
+      .spyOn(binaryToDecimalError, "parseBinary")
       .mockImplementationOnce(() => {
         throw new Error("Invalid binary number!");
       });
-    expect(() => binaryToDecimalError.splitBinary()).toThrowError(
+    expect(() => binaryToDecimalError.parseBinary()).toThrowError(
       "Invalid binary number!"
     );
     expect(spy).toHaveBeenCalled();
@@ -97,20 +97,20 @@ describe("BinaryToDecimal", () => {
   it("should return the converted decimal number", () => {
     const binaryToDecimal = new BinaryToDecimal("0110");
     const spy = jest
-      .spyOn(binaryToDecimal, "convert")
+      .spyOn(binaryToDecimal, "execute")
       .mockImplementation(() => 6);
-    expect(binaryToDecimal.convert()).toEqual(6);
+    expect(binaryToDecimal.execute()).toEqual(6);
     expect(spy).toHaveBeenCalled();
   });
 
   it("should throw an Error if the binary isn't valid", () => {
     const binaryToDecimalError = new BinaryToDecimal("1234");
     const spy = jest
-      .spyOn(binaryToDecimalError, "convert")
+      .spyOn(binaryToDecimalError, "execute")
       .mockImplementationOnce(() => {
         throw new Error("Invalid binary number!");
       });
-    expect(() => binaryToDecimalError.convert()).toThrowError(
+    expect(() => binaryToDecimalError.execute()).toThrowError(
       "Invalid binary number!"
     );
   });
